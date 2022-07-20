@@ -9,6 +9,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.azhon.appupdate.R
@@ -57,11 +58,14 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         val ibClose = findViewById<View>(R.id.ib_close)
-        val vLine = findViewById<View>(R.id.line)
+        val lineHor = findViewById<View>(R.id.line_hor)
+        val lineVer = findViewById<View>(R.id.line_vertical)
         val ivBg = findViewById<ImageView>(R.id.iv_bg)
         val tvTitle = findViewById<TextView>(R.id.tv_title)
         val tvSize = findViewById<TextView>(R.id.tv_size)
         val tvDescription = findViewById<TextView>(R.id.tv_description)
+        val dialogContainer =findViewById<LinearLayout>(R.id.dialog_container)
+        val btnContainer = findViewById<LinearLayout>(R.id.close_btn_container)
         progressBar = findViewById(R.id.np_bar)
         btnUpdate = findViewById(R.id.btn_update)
         progressBar.visibility = if (manager.forcedUpgrade) View.VISIBLE else View.GONE
@@ -89,8 +93,22 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
             }
             btnUpdate.background = drawable
         }
+
+        if (manager.showOrientationVertical){
+            lineVer.visibility =View.VISIBLE
+            lineHor.visibility=View.GONE
+            dialogContainer.orientation = LinearLayout.VERTICAL
+            btnContainer.orientation  = LinearLayout.VERTICAL
+        }else{
+            lineVer.visibility =View.GONE
+            lineHor.visibility=View.VISIBLE
+            dialogContainer.orientation = LinearLayout.HORIZONTAL
+            btnContainer.orientation  = LinearLayout.HORIZONTAL
+        }
+
         if (manager.forcedUpgrade) {
-            vLine.visibility = View.GONE
+            lineHor.visibility = View.GONE
+            lineVer.visibility =View.GONE
             ibClose.visibility = View.GONE
         }
         if (manager.apkVersionName.isNotEmpty()) {
@@ -102,6 +120,10 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
                 String.format(resources.getString(R.string.dialog_new_size), manager.apkSize)
             tvSize.visibility = View.VISIBLE
         }
+
+
+
+
         tvDescription.text = manager.apkDescription
     }
 

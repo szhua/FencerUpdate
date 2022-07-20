@@ -12,6 +12,8 @@ package com.azhon.appupdate.config
 
 object Constant {
 
+
+
     /**
      * Http timeout(ms)
      */

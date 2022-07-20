@@ -40,6 +40,7 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
         }
     }
 
+    var showOrientationVertical :Boolean = builder.showOrientationVertical
     var application: Application = builder.application
     var contextClsName: String = builder.contextClsName
     var downloadState: Boolean = false
@@ -313,6 +314,8 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
          */
         internal var dialogProgressBarColor = -1
 
+        internal  var showOrientationVertical =false
+
 
         fun apkUrl(apkUrl: String): Builder {
             this.apkUrl = apkUrl
@@ -407,6 +410,11 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
         fun dialogImage(dialogImage: Int): Builder {
             this.dialogImage = dialogImage
             return this
+        }
+
+        fun  showOrientationVertical(vertical :Boolean) :Builder{
+            this.showOrientationVertical =vertical
+            return  this
         }
 
         fun dialogButtonColor(dialogButtonColor: Int): Builder {
