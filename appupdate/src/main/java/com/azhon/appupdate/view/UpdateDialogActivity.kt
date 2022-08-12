@@ -68,7 +68,7 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
         val btnContainer = findViewById<LinearLayout>(R.id.close_btn_container)
         progressBar = findViewById(R.id.np_bar)
         btnUpdate = findViewById(R.id.btn_update)
-        progressBar.visibility = if (manager.forcedUpgrade) View.VISIBLE else View.GONE
+       // progressBar.visibility = if (manager.forcedUpgrade) View.VISIBLE else View.GONE
         btnUpdate.tag = 0
         btnUpdate.setOnClickListener(this)
         ibClose.setOnClickListener(this)
