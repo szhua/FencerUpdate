@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val url =  version.fileUrl
         val manager = DownloadManager.Builder(this).run {
             apkUrl(url)
-            showOrientationVertical(false)
+            showOrientationVertical(true)
             apkName("聊城水利一张图.apk")
             smallIcon(R.mipmap.ic_launcher)
             apkVersionCode(version.versionCode)
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             dialogButtonTextColor(Color.WHITE)
             showNotification(true)
             showBgdToast(false)
+            isPad(false)
             dialogButtonColor(Color.parseColor("#3885d0"))
             forcedUpgrade(false)
             onDownloadListener(listenerAdapter)

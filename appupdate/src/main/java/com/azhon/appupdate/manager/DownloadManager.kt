@@ -40,6 +40,7 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
         }
     }
 
+    var isPad :Boolean =builder.isPad
     var showOrientationVertical :Boolean = builder.showOrientationVertical
     var application: Application = builder.application
     var contextClsName: String = builder.contextClsName
@@ -316,6 +317,12 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
 
         internal  var showOrientationVertical =false
 
+        internal  var isPad =false
+
+        fun isPad(isPad :Boolean):Builder{
+            this.isPad =isPad
+            return  this
+        }
 
         fun apkUrl(apkUrl: String): Builder {
             this.apkUrl = apkUrl

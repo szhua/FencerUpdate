@@ -72,6 +72,9 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
         btnUpdate.tag = 0
         btnUpdate.setOnClickListener(this)
         ibClose.setOnClickListener(this)
+
+
+
         if (manager.dialogImage != -1) {
             ivBg.setBackgroundResource(manager.dialogImage)
         }
@@ -92,6 +95,13 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
                 addState(IntArray(0), colorDrawable)
             }
             btnUpdate.background = drawable
+        }
+
+        if (manager.isPad){
+            val dialogInner  = findViewById<LinearLayout>(R.id.dialog_inner)
+            val layoutParams = dialogInner.layoutParams
+            layoutParams.width = DensityUtil.dip2px(this,320.toFloat()).toInt()
+            dialogInner.layoutParams =layoutParams
         }
 
         if (manager.showOrientationVertical){
