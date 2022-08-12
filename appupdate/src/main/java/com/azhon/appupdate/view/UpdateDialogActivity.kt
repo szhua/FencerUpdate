@@ -148,12 +148,14 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
                     ApkUtil.installApk(this, Constant.AUTHORITIES!!, apk)
                     return
                 }
-                if (manager.forcedUpgrade) {
-                    btnUpdate.isEnabled = false
-                    btnUpdate.text = resources.getString(R.string.background_downloading)
-                } else {
-                    finish()
-                }
+//                if (manager.forcedUpgrade) {
+//                    btnUpdate.isEnabled = false
+//                    btnUpdate.text = resources.getString(R.string.background_downloading)
+//                } else {
+//                    finish()
+//                }
+                btnUpdate.isEnabled = false
+                btnUpdate.text = resources.getString(R.string.background_downloading)
                 manager.onButtonClickListener?.onButtonClick(OnButtonClickListener.UPDATE)
                 startService(Intent(this, DownloadService::class.java))
             }
