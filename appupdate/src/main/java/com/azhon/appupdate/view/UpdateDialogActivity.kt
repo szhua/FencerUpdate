@@ -149,9 +149,9 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.ib_close -> {
                 if (!manager.forcedUpgrade) {
+                    manager.onButtonClickListener?.onButtonClick(OnButtonClickListener.CANCEL)
                     finish()
                 }
-                manager.onButtonClickListener?.onButtonClick(OnButtonClickListener.CANCEL)
             }
             R.id.btn_update -> {
                 if (btnUpdate.tag == install) {
