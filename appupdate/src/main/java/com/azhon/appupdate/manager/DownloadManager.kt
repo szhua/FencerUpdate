@@ -33,7 +33,9 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
         private var instance: DownloadManager? = null
 
         fun getInstance(builder: Builder? = null): DownloadManager {
-            instance = DownloadManager(builder!!)
+            if (instance == null) {
+                instance = DownloadManager(builder!!)
+            }
             return instance!!
         }
     }
@@ -443,6 +445,7 @@ class DownloadManager private constructor(builder: Builder) : Serializable {
         }
 
         fun build(): DownloadManager {
+            instance =null
             return getInstance(this)
         }
     }
