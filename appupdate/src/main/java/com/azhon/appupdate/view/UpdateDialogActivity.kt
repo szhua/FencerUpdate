@@ -148,10 +148,8 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.ib_close -> {
-                if (!manager.forcedUpgrade) {
-                    manager.onButtonClickListener?.onButtonClick(OnButtonClickListener.CANCEL)
-                    finish()
-                }
+                manager.onButtonClickListener?.onButtonClick(OnButtonClickListener.CANCEL)
+                finish()
             }
             R.id.btn_update -> {
                 if (btnUpdate.tag == install) {
