@@ -1,8 +1,10 @@
 package com.azhon.appupdate.view
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -11,7 +13,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.setMargins
 import com.azhon.appupdate.R
 import com.azhon.appupdate.config.Constant
 import com.azhon.appupdate.listener.OnButtonClickListener
@@ -29,7 +33,6 @@ import java.io.File
  * FileName:    UpdateDialogActivity
  * CreateDate:  2022/4/7 on 17:40
  * Desc:
- *
  * @author   azhon
  */
 
@@ -101,6 +104,7 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
             val dialogInner  = findViewById<LinearLayout>(R.id.dialog_inner)
             val layoutParams = dialogInner.layoutParams
             layoutParams.width = DensityUtil.dip2px(this,320.toFloat()).toInt()
+            //layoutParams.setMargins(0,DensityUtil.dip2px(this, -20f).toInt(),0,0)
             dialogInner.layoutParams =layoutParams
         }
 
@@ -200,4 +204,22 @@ class UpdateDialogActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+        overrideFontScale(newBase)
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private fun overrideFontScale(context: Context?) {
+        if (context == null) return
+        context.resources.configuration.let {
+            it.fontScale = 1f // 保持字体比例不变，始终为 1.
+            applyOverrideConfiguration(it) // 应用新的配置
+        }
+    }
+
 }
